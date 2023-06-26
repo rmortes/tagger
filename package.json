@@ -20,6 +20,7 @@
     "vite-plugin-solid": "^2.7.0"
   },
   "dependencies": {
+    "@solid-primitives/i18n": "^1.4.0",
     "file-saver": "^2.0.5",
     "jszip": "^3.10.1",
     "sanitize-html": "^2.11.0",

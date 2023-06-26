@@ -534,6 +534,11 @@
     "@solid-primitives/static-store" "^0.0.2"
     "@solid-primitives/utils" "^6.0.0"
 
+"@solid-primitives/context@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@solid-primitives/context/-/context-0.2.1.tgz#ebbc423baa14bb5f6150d979c0945e486d790af5"
+  integrity sha512-XIIwCOWpRKDersgkR9LNFXaJHIV8QlCFo/tq5bV0cAOZklcwOFcqi2bN+uWgEIQSWGjWXU2kc1H1/TzgYzVDlg==
+
 "@solid-primitives/cursor@^0.0.109":
   version "0.0.109"
   resolved "https://registry.yarnpkg.com/@solid-primitives/cursor/-/cursor-0.0.109.tgz#2447de5b23a62a477a965bb01f78cdb74e36f4a1"
@@ -554,6 +559,13 @@
   integrity sha512-8GtVEq0ECZoa5Klo1jjfGPfwg0zVJ8TNnNkWu8FqRkh0CkhbhCVJAKwjleem9K/qL6zUDfJihLjhqGBTBbb+8w==
   dependencies:
     "@solid-primitives/utils" "^6.2.0"
+
+"@solid-primitives/i18n@^1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@solid-primitives/i18n/-/i18n-1.4.0.tgz#11cb42e6807ad5f4b4cfdab0985f03a238260e14"
+  integrity sha512-jKNa9cl9JFnJdYMh8cQUDb8n89Qc6UTJS9Q0DBjx04du86cv9OOCqnbc+xIKJy+QHV7MfBf7KFDdg3sSGwLstA==
+  dependencies:
+    "@solid-primitives/context" "^0.2.1"
 
 "@solid-primitives/keyboard@^1.2.3":
   version "1.2.3"

@@ -6,18 +6,13 @@ import sanitizeHtml from 'sanitize-html';
 import renderAndDownloadImages from './utils/renderAndDownloadImages';
 import downloadIcon from './assets/icons/download.svg';
 import Footer from './footer';
-
-const defaultDiv = `<div>
-  <div style="background: rgb(81 236 8 / 40%); padding: 4px; position: absolute; top: 10px; right: 0; color: white; font-size: 200%;">
-    This is such a great tag...
-  </div>
-</div>
-`;
+import { useScopedI18n } from '@solid-primitives/i18n';
 
 
 const App: Component = () => {
+  const [t] = useScopedI18n("app");
   const [images, setImages] = createSignal<File[]>([]);
-  const [rawHtml, setRawHtml] = createSignal<string>(defaultDiv);
+  const [rawHtml, setRawHtml] = createSignal<string>();
   const [candidateHtml, setCandidateHtml] = createSignal<string>();
   const [clickedDownload, setClickedDownload] = createSignal<boolean>(false);
   const validatedHtml = () => sanitizeHtml(rawHtml(), {
@@ -29,11 +24,12 @@ const App: Component = () => {
   })
   const generateImages = () => {
     setCandidateHtml(validatedHtml());
-    document.getElementById('step-Step 3')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('step-3')?.scrollIntoView({ behavior: 'smooth' });
   }
   function addImages(files: FileList) {
+    if (images().length === 0) setRawHtml(t("step_2.default_html"));
     setImages([...Array.from(files), ...images()]);
-    document.getElementById('step-Step 2')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('step-2')?.scrollIntoView({ behavior: 'smooth' });
   }
   function removeImage(index: number) {
     setImages(images().filter((_, i) => i !== index));
@@ -41,17 +37,18 @@ const App: Component = () => {
   function download() {
     renderAndDownloadImages(images(), candidateHtml())
     setClickedDownload(true);
-    document.getElementById('step-Step 4')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('step-4')?.scrollIntoView({ behavior: 'smooth' });
   }
   return (
     <div class="max-w-800px w-90vw mx-auto mt-32px mb-128px">
       <Header />
       <Step
-        title="Step 1"
-        description="Select the images you want to apply the tag to"
+        id="step-1"
+        title={t("step_1.title")}
+        description={t("step_1.description")}
       >
         <label for="file-upload" data-type="file">
-          <span>Drag and drop your images here</span>
+          <span>{t("step_1.drag_and_drop")}</span>
           <input id="file-upload" type="file" multiple onChange={(e) => addImages(e.target.files!)} />
         </label>
         <div class="flex flex-nowrap flex-row gap-10px w-full overflow-auto overflow-y-hidden mt-32px">
@@ -80,8 +77,9 @@ const App: Component = () => {
         </div>
       </Step>
       {images().length && <Step
-        title="Step 2"
-        description="Write the HTML code you want over your images"
+        id="step-2"
+        title={t("step_2.title")}
+        description={t("step_2.description")}
       >
         <div class="flex flex-row gap-10px w-full overflow-x-auto overflow-y-hidden flex-wrap lg:flex-nowrap">
           <div class="flex flex-1 w-full">
@@ -97,10 +95,11 @@ const App: Component = () => {
         </div>
       </Step>}
       {images().length && <Step
-        title="Step 3"
-        description="Generate and preview your images"
+        id="step-3"
+        title={t("step_3.title")}
+        description={t("step_3.description")}
       >
-        <button class="action" onClick={generateImages}>Generate</button>
+        <button class="action" onClick={generateImages}>{t("step_3.generate")}</button>
         {candidateHtml() && <div class="flex flex-nowrap flex-row gap-10px w-full overflow-auto overflow-y-hidden mt-32px">
           {images().map((image, index) => (
             <div class="image-height">
@@ -111,14 +110,15 @@ const App: Component = () => {
         }
       </Step>}
       {candidateHtml() && <Step
-        title="Step 4"
-        description="Download your images"
+        id="step-4"
+        title={t("step_4.title")}
+        description={t("step_4.description")}
       >
         <button class="action" onClick={download}>
           <img src={downloadIcon} alt="" class="w-24px h-24px mr-8px" />
-          Download
+          {t("step_4.download")}
         </button>
-        {clickedDownload() && <div class="mt-24px">This may take a while depending on the number of images you have</div>}
+        {clickedDownload() && <div class="mt-24px">{t("step_4.may_take_a_while")}</div>}
       </Step>}
       <Footer />
     </div>

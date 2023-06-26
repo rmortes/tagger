@@ -1,8 +1,11 @@
+import { useScopedI18n } from "@solid-primitives/i18n"
+
 export default function Header() {
+  const [t] = useScopedI18n("header");
   return (
     <div>
-      <h1>Tagger<span>By Raúl Mortes</span></h1>
-      <p>Helping you add tags to images (in 4 easy steps!) since probably yesterday</p>
+      <h1>Tagger<span>{t("credits")}</span></h1>
+      <div>{t("subtitle")}</div>
     </div>
   )
 }
