@@ -25,6 +25,20 @@ const en = {
   </div>
 </div>
 `,
+      style: "Add your CSS styles here (the insides of a <style> tag!)",
+      html: "Add your the HTML you want to place over the image",
+      info: {
+        title: "Styles in SVG are weird",
+        description: "If something doesn't work as you'd expect, I hope this FAQ can help you out ☘️",
+        load_fonts: {
+          title: "Why can't I load fonts?",
+          body: () => `Fonts are an external resource, and therefore can't be loaded into an SVG easily.
+<br />
+However, you can try converting your font to base64 (for example
+with <a href="https://hellogreg.github.io/woff2base/" target="_blank" rel="noopener noreferrer">
+  this tool</a>) and adding it to the styles section.`
+        }
+      }
     },
     step_3: {
       title: "Step 3",

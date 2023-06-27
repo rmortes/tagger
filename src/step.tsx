@@ -2,8 +2,8 @@ import { JSX } from "solid-js/jsx-runtime";
 
 interface StepProps {
   id?: string;
-  title: string;
-  description: string;
+  title: string | JSX.Element;
+  description: string | JSX.Element;
   children: JSX.Element;
 }
 

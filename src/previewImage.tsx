@@ -4,6 +4,7 @@ import renderHtmlToImg from "./utils/renderHtmlToImg";
 interface PreviewImageProps {
   imageFile: File;
   html: string;
+  styleSheet: string;
 }
 
 export default function PreviewImage(props: PreviewImageProps) {
@@ -29,7 +30,7 @@ export default function PreviewImage(props: PreviewImageProps) {
 
   createEffect(async () => {
     if (!props.html || !originalImageSrc() || !imgDimensions()) return;
-    setEditedImageSrc(await renderHtmlToImg(img, originalImageSrc(), imgDimensions(), props.html));
+    setEditedImageSrc(await renderHtmlToImg(props.styleSheet, originalImageSrc(), imgDimensions(), props.html));
   });
 
   return (

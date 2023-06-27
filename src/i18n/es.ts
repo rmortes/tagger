@@ -25,6 +25,20 @@ const es = {
   </div>
 </div>
 `,
+      style: "Añade tus estilos CSS aquí (¡el interior de una etiqueta <style>!)",
+      html: "Añade el HTML que quieres colocar sobre la imagen",
+      info: {
+        title: "Los estilos en SVG son raros",
+        description: "Si algo no funciona como esperarías, espero que este FAQ te pueda ayudar en algo ☘️",
+        load_fonts: {
+          title: "¿Por qué no puedo cargar fuentes?",
+          body: () => `Las fuentes son un recurso externo, y por tanto no se pueden cargar en un SVG fácilmente.
+<br />
+Sin embargo, puedes probar convirtiendo tu fuente a base64 (por ejemplo
+con <a href="https://hellogreg.github.io/woff2base/" target="_blank" rel="noopener noreferrer">
+  esta herramienta</a>) y añadiéndola al apartado de estilos.`
+        }
+      }
     },
     step_3: {
       title: "Paso 3",
